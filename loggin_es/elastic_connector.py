@@ -8,8 +8,6 @@ ES_CLIENT = Elasticsearch(
   api_key="XXXXXXXXXXXXXXXXXXXXXXXX"
 )
 
-FAKE_UUID = "73330bca-9ec9-4569-ba3f-005751b63250"
-
 def log_to_elasticsearch(log_data: dict):
     print(log_data)
     res = ES_CLIENT.index(index="demo-ai-search", body=log_data)
