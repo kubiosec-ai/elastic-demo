@@ -1,12 +1,12 @@
 ## POC
-## In terminal_1
+### In terminal_1
 ```
 export OPENAI_API_KEY="XXXXXX"
 ```
 ```
 python3 ./demoproxy.py
 ```
-## In terminal_2
+### In terminal_2
 ```
 export OPENAI_API_KEY="XXXXXX"
 ```
