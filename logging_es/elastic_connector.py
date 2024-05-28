@@ -5,7 +5,7 @@ from datetime import datetime
 
 ES_CLIENT = Elasticsearch(
   "https://b2df3cb9e1674220b93a11585c454084.westeurope.azure.elastic-cloud.com:443",
-  api_key="XXXXXXXXXXXXXXXXXXXXXXXX"
+  api_key = os.environ.get('ES_API_KEY')
 )
 
 def log_to_elasticsearch(log_data: dict):
