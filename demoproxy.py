@@ -17,7 +17,7 @@ app = Flask(__name__)
 # Configure Elastic APM
 app.config['ELASTIC_APM'] = {
     'SERVICE_NAME': 'demo-ai-search',
-    'SECRET_TOKEN': '3GwyKEVn8I8YTMnmqw',
+    'SECRET_TOKEN': 'xxxxxxxxxxx',
     'SERVER_URL': 'https://4768d2bd240c46baa56babc5b7bdced9.apm.westeurope.azure.elastic-cloud.com:443',
     'ENVIRONMENT': 'my-environment',
 }
