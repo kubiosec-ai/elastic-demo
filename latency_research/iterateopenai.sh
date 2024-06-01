@@ -6,4 +6,5 @@ do
   curl http://127.0.0.1:6000/quote35
   curl http://127.0.0.1:6000/quote4
   curl http://127.0.0.1:6000/quote4o
+  curl http://127.0.0.1:6000/quote4ol
 done
