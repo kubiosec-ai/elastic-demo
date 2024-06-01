@@ -1,12 +1,12 @@
 from flask import Flask, jsonify
 from elasticapm.contrib.flask import ElasticAPM
-import openai
+from openai import OpenAI
 import os
 
 app = Flask(__name__)
 
 app.config['ELASTIC_APM'] = {
-    'SERVICE_NAME': 'FlaskApp',
+    'SERVICE_NAME': 'FlaskAppLatency',
     'SECRET_TOKEN': '',
     'SERVER_URL': 'http://localhost:8200'
 }
@@ -14,7 +14,9 @@ app.config['ELASTIC_APM'] = {
 apm = ElasticAPM(app)
 
 # Set your OpenAI API key
-openai.api_key = os.getenv('OPENAI_API_KEY')
+# openai.api_key = os.getenv('OPENAI_API_KEY')
+client = OpenAI()
+
 
 @app.route('/')
 def index():
@@ -24,7 +26,7 @@ def index():
 @app.route('/quote2')
 def quote2():
     try:
-        response = openai.Completion.create(
+        response = client.chat.completions.create(
             engine="davinci-002",
             prompt="Tell me a joke.",
             max_tokens=250,
@@ -38,7 +40,7 @@ def quote2():
 @app.route('/quote35')
 def quote35():
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo-16k",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
@@ -47,7 +49,7 @@ def quote35():
             max_tokens=250,
             temperature=1,
         )
-        joke = response.choices[0].message['content'].strip()
+        joke = response.choices[0].message.content
         return jsonify(joke=joke)
     except Exception as e:
         return jsonify(error=str(e)), 500
@@ -56,7 +58,7 @@ def quote35():
 @app.route('/quote4')
 def quote4():
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
@@ -65,7 +67,7 @@ def quote4():
             max_tokens=250,
             temperature=1
         )
-        joke = response.choices[0].message['content'].strip()
+        joke = response.choices[0].message.content
         return jsonify(joke=joke)
     except Exception as e:
         return jsonify(error=str(e)), 500
@@ -73,7 +75,7 @@ def quote4():
 @app.route('/quote4o')
 def quote4o():
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
@@ -82,7 +84,7 @@ def quote4o():
             max_tokens=250,
             temperature=1
         )
-        joke = response.choices[0].message['content'].strip()
+        joke = response.choices[0].message.content
         return jsonify(joke=joke)
     except Exception as e:
         return jsonify(error=str(e)), 500
@@ -91,4 +93,4 @@ def quote4o():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=6000)
