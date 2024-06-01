@@ -92,7 +92,7 @@ def quote4o():
         return jsonify(error=str(e)), 500
 
 @app.route('/quote4ol')
-def quote4o():
+def quote4ol():
     try:
         response = client.chat.completions.create(
             model="gpt-4o",
