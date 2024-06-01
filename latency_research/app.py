@@ -34,7 +34,7 @@ def quote2():
               frequency_penalty=0,
               presence_penalty=0
             )
-        joke = response.choices[0].message.content
+        joke = response['choices'][0]['message']['content']
         return jsonify(joke=joke)
     except Exception as e:
         return jsonify(error=str(e)), 500
