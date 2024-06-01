@@ -26,7 +26,7 @@ def index():
 @app.route('/quote2')
 def quote2():
     try:
-        response = client.chat.completions.create(
+        response = client.completions.create((
             engine="davinci-002",
             prompt="Tell me a joke.",
             max_tokens=250,
