@@ -91,6 +91,22 @@ def quote4o():
     except Exception as e:
         return jsonify(error=str(e)), 500
 
+@app.route('/quote4ol')
+def quote4o():
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": "Tell me a joke about chickens adn a dog somewhere in an utopia based world where everybody lives in harmony."}
+            ],
+            max_tokens=250,
+            temperature=1
+        )
+        joke = response.choices[0].message.content
+        return jsonify(joke=joke)
+    except Exception as e:
+        return jsonify(error=str(e)), 500
 
 
 
