@@ -28,7 +28,7 @@ def quote2():
     try:
         response = client.completions.create(
               model="davinci-002",
-              prompt="tell me a joke"
+              prompt="tell me a joke",
               max_tokens=256,
               top_p=1,
               frequency_penalty=0,
