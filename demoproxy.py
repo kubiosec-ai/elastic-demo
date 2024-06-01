@@ -75,6 +75,7 @@ def openai_proxy():
     # Langchain agent to calculate results
     tools = [PythonREPLTool()]
     llm = ChatOpenAI()
+#   llm = ChatOpenAI(base_url="http://127.0.0.1:4000")
 
     agent = create_react_agent(llm, tools, prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools)
