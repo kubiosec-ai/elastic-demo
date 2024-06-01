@@ -32,7 +32,7 @@ def quote2():
             max_tokens=250,
             temperature=1
         )
-        joke = response.choices[0].text.strip()
+        joke = response.choices[0].message.content
         return jsonify(joke=joke)
     except Exception as e:
         return jsonify(error=str(e)), 500
