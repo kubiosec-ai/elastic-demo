@@ -23,6 +23,7 @@ app = Flask(__name__)
 #}
 
 app.config['ELASTIC_APM'] = {
+    'SERVICE_NAME': 'demo-ai-search',
     'SERVICE_NAME': 'FlaskAppLatency',
     'SECRET_TOKEN': '',
     'SERVER_URL': 'http://localhost:8200'
