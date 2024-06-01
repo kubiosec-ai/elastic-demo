@@ -27,11 +27,13 @@ def index():
 def quote2():
     try:
         response = client.completions.create(
-            engine="davinci-002",
-            prompt="Tell me a joke.",
-            max_tokens=250,
-            temperature=1
-        )
+              model="davinci-002",
+              prompt="tell me a joke"
+              max_tokens=256,
+              top_p=1,
+              frequency_penalty=0,
+              presence_penalty=0
+            )
         joke = response.choices[0].message.content
         return jsonify(joke=joke)
     except Exception as e:
