@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 from flask import Flask, jsonify
 import monitor2  # Import the module
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
@@ -29,27 +29,26 @@ RequestsInstrumentor().instrument()
 
 app = Flask(__name__)
 
-# Set OpenAI API key
-openai.api_key = os.getenv('OPENAI_API_KEY')
 
+# Set OpenAI API key
+client = OpenAI()
 
 @app.route("/completion")
 @tracer.start_as_current_span("do_work")
 def completion():
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": "Tell me a joke."}
             ],
             max_tokens=250,
-            temperature=1,
+            temperature=1
         )
-        joke = response.choices[0].message['content'].strip()
+        joke = response.choices[0].message.content
         return jsonify(joke=joke)
     except Exception as e:
         return jsonify(error=str(e)), 500
-
 if __name__ == "__main__":
     app.run()
