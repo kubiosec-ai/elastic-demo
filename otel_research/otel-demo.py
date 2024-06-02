@@ -1,6 +1,6 @@
 from openai import OpenAI
 from flask import Flask, jsonify
-import monitor2  # Import the module
+import monitor  # Import the module
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 import urllib
 import os
