@@ -45,10 +45,6 @@ def completion():
             temperature=1
         )
         cost = calculate_cost(response)
-        span = trace.get_current_span()
-        span.set_attribute("cost", cost)
-        span.set_attribute("model", response.model)
-        span.set_attribute("response", str(response))
         joke = response.choices[0].message.content
         print(response)
         return jsonify(joke=joke)
