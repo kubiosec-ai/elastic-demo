@@ -14,9 +14,7 @@ from opentelemetry.instrumentation.openai import OpenAIInstrumentor
 OpenAIInstrumentor().instrument()
 
 # OpenTelemetry setup
-resource = Resource(attributes={
-    SERVICE_NAME: "openai_otel"
-})
+resource = Resource(attributes={SERVICE_NAME: "openai_otel"})
 provider = TracerProvider(resource=resource)
 processor = BatchSpanProcessor(OTLPSpanExporter(
     endpoint=os.getenv('OTEL_EXPORTER_OTLP_ENDPOINT'),
