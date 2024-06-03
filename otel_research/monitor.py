@@ -37,7 +37,11 @@ def calculate_cost(response):
         cost = usage.total_tokens * 0.0004 / 1000
     else:
         cost = 0
-
+        
+    span = trace.get_current_span()
+    span.set_attribute("cost", cost)
+    span.set_attribute("model", response.model)
+    span.set_attribute("response", str(response))
     return cost
 
 def count_completion_requests_and_tokens(func):
