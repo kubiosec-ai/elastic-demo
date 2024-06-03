@@ -23,8 +23,8 @@ def calculate_cost(response):
         cost = (usage.prompt_tokens * 0.06 + usage.completion_tokens * 0.12) / 1000
     elif model in ['gpt-4o-2024-05-13', 'gpt-4o']:
         cost = (usage.prompt_tokens * 0.05 + usage.completion_tokens * 0.015) / 1000
-    elif 'gpt-3.5-turbo-1106' in model:
-        cost = (usage.prompt_tokens * 0.01 + usage.completion_tokens * 0.02) / 1000
+    elif 'gpt-3.5-turbo-0125' in model:
+        cost = (usage.prompt_tokens * 0.0005 + usage.completion_tokens * 0.0015) / 1000
     elif 'gpt-3.5-turbo-0613' in model:
         cost = (usage.prompt_tokens * 0.015 + usage.completion_tokens * 0.02) / 1000
     elif 'davinci' in model:
