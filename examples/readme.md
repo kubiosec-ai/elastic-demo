@@ -11,3 +11,7 @@ docker logs -f litellm >output.txt 2>&1
 ```
 tail -f  output.txt | grep " token_counter messages received"
 ```
+### API request
+```
+python3 client.py
+```
